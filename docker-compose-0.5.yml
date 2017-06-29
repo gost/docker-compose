@@ -17,7 +17,7 @@ services:
     gost-db:
         image: geodan/gost-db:0.5
         volumes:
-            - postgis:/var/lib/pgsql/9.6/data
+            - postgis:/var/lib/postgresql/data
         environment:
             POSTGRES_DB: gost
             POSTGRES_USER: postgres
