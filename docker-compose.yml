@@ -24,6 +24,8 @@ services:
             POSTGRES_PASSWORD: postgres
     gost:
         image: geodan/gost
+        volumes:
+            - gost_conf:/gostserver/config
         depends_on:
             - mosquitto
             - gost-db
@@ -33,11 +35,12 @@ services:
     dashboard:
         image: geodan/gost-dashboard
         ports:
-          - "8080:8080"
+            - "8080:8080"
         depends_on:
             - gost
 volumes:
     postgis: {}
     nodered: {}
+    gost_conf: {}
     mosquitto_data: {}
     mosquitto_conf: {}
