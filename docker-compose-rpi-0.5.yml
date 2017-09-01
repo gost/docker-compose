@@ -21,8 +21,8 @@ services:
             - mosquitto
             - gost-db
         environment:
-            gost_db_host: gost-db
-            gost_mqtt_host: mosquitto
+            GOST_DB_HOST: gost-db
+            GOSt_MQTT_HOST: mosquitto
     dashboard:
         image: geodan/rpi-gost-dashboard:0.5
         ports:
