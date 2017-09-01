@@ -1,7 +1,7 @@
 version: '2'
 services:
     node-red:
-        image: audumla/audiot-rpi-nodered
+        image: elzekool/rpi-nodered
         ports:
             - "1880:1880"
     mosquitto:
