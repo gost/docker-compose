@@ -2,17 +2,22 @@ version: '2'
 services:
     node-red:
         image: elzekool/rpi-nodered
+        volumes:
+            - nodered:/data
         ports:
             - "1880:1880"
     mosquitto:
         image: pascaldevink/rpi-mosquitto
+        volumes:
+            - mosquitto_data:/mqtt/data
+            - mosquitto_conf:/mqtt/config:ro
         ports:
             - "1883:1883"
             - "9001:9001"
     gost-db:
         image: geodan/rpi-gost-db
         volumes:
-            - /home/pi/.local/share/postgresql:/var/lib/postgresql/data
+            - postgis:/var/lib/postgresql/data
         ports:
             - "5432:5432"
         environment:
@@ -21,6 +26,8 @@ services:
             POSTGRES_PASSWORD: postgres
     gost:
         image: geodan/rpi-gost
+        volumes:
+            - gost_conf:/gostserver/config
         depends_on:
             - mosquitto
             - gost-db
@@ -33,3 +40,9 @@ services:
           - "8080:8080"
         depends_on:
             - gost
+volumes:
+    postgis: {}
+    nodered: {}
+    gost_conf: {}
+    mosquitto_data: {}
+    mosquitto_conf: {}
