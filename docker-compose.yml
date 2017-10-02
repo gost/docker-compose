@@ -40,7 +40,7 @@ services:
         depends_on:
             - gost
         labels:
-            - kompose.service.type: NodePort
+            - kompose.service.type: nodeport
 volumes:
     postgis: {}
     nodered: {}
