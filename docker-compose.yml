@@ -32,7 +32,6 @@ services:
         environment:
             GOST_DB_HOST: gost-db
             GOST_MQTT_HOST: mosquitto
-        
     dashboard:
         image: geodan/gost-dashboard
         ports:
@@ -40,7 +39,7 @@ services:
         depends_on:
             - gost
         labels:
-            - "kompose.service.type": nodeport
+            - kompose.service.type: "nodeport"
 volumes:
     postgis: {}
     nodered: {}
