@@ -38,8 +38,8 @@ services:
             - "8080:8080"
         depends_on:
             - gost
-        labels:
-            - kompose.service.type: "nodeport"
+        labels: 
+            kompose.service.type: nodeport            
 volumes:
     postgis: {}
     nodered: {}
