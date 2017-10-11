@@ -1,19 +1,5 @@
 version: '2'
 services:
-    node-red:
-        image: nodered/node-red-docker
-        volumes:
-            - nodered:/data
-        ports:
-            - "1880:1880"
-    mosquitto:
-        image: toke/mosquitto
-        volumes:
-            - mosquitto_data:/mqtt/data
-            - mosquitto_conf:/mqtt/config:ro
-        ports:
-            - "1883:1883"
-            - "9001:9001"
     gost-db:
         image: geodan/gost-db
         volumes:
@@ -27,20 +13,15 @@ services:
         volumes:
             - gost_conf:/gostserver/config
         depends_on:
-            - mosquitto
             - gost-db
         environment:
             GOST_DB_HOST: gost-db
-            GOST_MQTT_HOST: mosquitto
     dashboard:
         image: geodan/gost-dashboard
         ports:
-            - "8080:8080"
+            - "${DASHBOARD_PORT}:8080"
         depends_on:
             - gost
 volumes:
     postgis: {}
-    nodered: {}
     gost_conf: {}
-    mosquitto_data: {}
-    mosquitto_conf: {}
