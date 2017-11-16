@@ -17,11 +17,15 @@ services:
         environment:
             GOST_DB_HOST: gost-db
     dashboard:
-        image: geodan/gost-dashboard
+        image: bertt/gost-dashboard
         ports:
-            - "${DASHBOARD_PORT}:8080"
-        depends_on:
-            - gost
+            - "127.0.0.1:${PORT}:80"
+        environment:
+            VIRTUAL_HOST: ${VIRTUAL_HOST}
 volumes:
     postgis: {}
     gost_conf: {}
+networks:
+  default:
+    external:
+      name: gost-network
