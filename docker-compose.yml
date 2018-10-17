@@ -1,7 +1,7 @@
 version: '2'
 services:
     node-red:
-        image: nodered/node-red-docker
+        image: nodered/node-red-docker:slim-v8
         volumes:
             - nodered:/data
         ports:
