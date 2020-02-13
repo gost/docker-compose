@@ -1,29 +1,9 @@
 version: '2'
 services:
-    node-red:
-        image: nodered/node-red-docker:slim-v8
-        volumes:
-            - nodered:/data
-        ports:
-            - "1880:1880"
-    mosquitto:
-        image: eclipse-mosquitto
-        volumes:
-            - mosquitto_data:/mosquitto/data
-            - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-        ports:
-            - "1883:1883"
-            - "9001:9001"
-        expose:
-            - "1883"
-            - "9001"            
     gost-db:
         image: geodan/gost-db
         volumes:
             - postgis:/var/lib/postgresql/data
-        ports:
-            - "5432:5432"
-    
         environment:
             POSTGRES_DB: gost
             POSTGRES_USER: postgres
@@ -33,10 +13,8 @@ services:
         volumes:
             - gost_conf:/gostserver/config
         depends_on:
-            - mosquitto
             - gost-db
         environment:
-            GOST_LOG_VERBOSE_FLAG: 1
             GOST_DB_HOST: gost-db
             GOST_MQTT_HOST: mosquitto
     dashboard:
@@ -47,6 +25,4 @@ services:
             - gost
 volumes:
     postgis: {}
-    nodered: {}
     gost_conf: {}
-    mosquitto_data: {}
