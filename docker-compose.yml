@@ -14,9 +14,6 @@ services:
         ports:
             - "1883:1883"
             - "9001:9001"
-        expose:
-            - "1883"
-            - "9001"            
     gost-db:
         image: geodan/gost-db
         volumes:
