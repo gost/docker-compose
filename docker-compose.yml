@@ -7,10 +7,9 @@ services:
         ports:
             - "1880:1880"
     mosquitto:
-        image: eclipse-mosquitto
+        image: agmangas/mosquitto-websockets
         volumes:
             - mosquitto_data:/mosquitto/data
-            - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
         ports:
             - "1883:1883"
             - "9001:9001"
