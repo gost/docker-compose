@@ -4,7 +4,6 @@ This repository contains docker-compose files for GOST
 
 Running (unstable) latest build of GOST:
 ```
-$ wget https://raw.githubusercontent.com/gost/docker-compose/master/mosquitto.conf 
 $ wget https://raw.githubusercontent.com/gost/docker-compose/master/docker-compose.yml 
 $ docker-compose up
 ```
